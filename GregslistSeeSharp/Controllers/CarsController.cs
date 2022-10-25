@@ -32,6 +32,47 @@ public class CarsController : ControllerBase
   }
 
 
+
+  [HttpGet("{id}")]
+  public ActionResult<Car> GetCarById(int id)
+  {
+    try
+    {
+
+
+
+      Car car = _carsService.GetCarById(id);
+      return Ok(car);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
+
+
+
+
+  [HttpDelete("{id}")]
+  public ActionResult<Car> RemoveCar(int id)
+  {
+    try
+    {
+Car car = _carsService.RemoveCar(id);
+      return Ok(car.Make + "Was Removed");
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
+
+
+
+
+
+
+
   [HttpPost]
   public ActionResult<List<Car>> Create([FromBody] Car carData)
   {

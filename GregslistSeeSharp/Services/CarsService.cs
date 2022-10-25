@@ -23,4 +23,21 @@ public class CarsService
     return null;
   }
 
+public Car GetCarById(int id){
+  var car = _carsRepo.GetCarById(id);
+
+  if( car == null)
+  {
+  throw new Exception("Invalid Id [GetCarById]");
+  }
+  
+  return car;
+}
+
+public Car RemoveCar(int id)
+{
+
+  return _carsRepo.RemoveCar(id);
+}
+
 }
