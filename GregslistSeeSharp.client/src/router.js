@@ -9,20 +9,25 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: loadPage('HomePage')
+    component: loadPage('HomePage'),
   },
   {
     path: '/about',
     name: 'About',
-    component: loadPage('AboutPage')
+    component: loadPage('AboutPage'),
+  },
+  {
+    path: '/classifieds/:id',
+    name: 'Details',
+    component: loadPage('DetailsPage'),
   },
   {
     path: '/account',
     name: 'Account',
     component: loadPage('AccountPage'),
-    beforeEnter: authGuard
-  }
-]
+    beforeEnter: authGuard,
+  },
+];
 
 export const router = createRouter({
   linkActiveClass: 'router-link-active',
