@@ -17,3 +17,14 @@ VALUES ("HOTDOG", "BUCKET", 1996, 9999, "Yuck Yuck", "https://upload.wikimedia.o
 SELECT * FROM cars ;
 
 DROP TABLE cars;
+
+DELETE from cars WHERE id = 1;
+
+UPDATE cars SET 
+  make = @make,
+                model = @model,
+                year = @year,
+                price = @price,
+                imgUrl = @imgUrl,
+                description = @description        
+            WHERE id = @id;

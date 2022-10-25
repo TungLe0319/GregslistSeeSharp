@@ -20,24 +20,44 @@ public class CarsService
   }
   public Car CreateCar(Car carData)
   {
-    return null;
+    return _carsRepo.CreateCar(carData);
   }
 
-public Car GetCarById(int id){
-  var car = _carsRepo.GetCarById(id);
-
-  if( car == null)
+  public Car GetCarById(int id)
   {
-  throw new Exception("Invalid Id [GetCarById]");
+    var car = _carsRepo.GetCarById(id);
+
+    if (car == null)
+    {
+      throw new Exception("Invalid Id [GetCarById]");
+    }
+
+    return car;
   }
-  
-  return car;
-}
 
-public Car RemoveCar(int id)
-{
+  public Car RemoveCar(int id)
+  {
+    var car = _carsRepo.GetCarById(id);
 
-  return _carsRepo.RemoveCar(id);
-}
+    if (car == null)
+    {
+      throw new Exception("Invalid Id [GetCarById]");
+    }
+
+    return _carsRepo.RemoveCar(id);
+  }
+
+
+  public Car UpdateCar(Car carData)
+  {
+    Car original = GetCarById(carData.Id);
+    original.Make = carData.Make ?? original.Make;
+    original.Model = carData.Model ?? original.Model;
+    original.Year = carData.Year ;
+    original.Price = carData.Price ;
+    original.ImgUrl = carData.ImgUrl ?? original.ImgUrl;
+    original.Description = carData.Description ?? original.Description;
+    return _carsRepo.UpdateCar(original);
+  }
 
 }

@@ -31,17 +31,43 @@ public class CarsRepository
 
   public Car GetCarById(int id)
   {
-    string sql = @"SELECT * FROM cars WHERE id = @id";
+    var sql = @"SELECT * FROM cars WHERE id = @id";
     return _db.QueryFirstOrDefault<Car>(sql, new { id });
 
   }
 
-public Car RemoveCar(int id)
-{
-  // var carId = this.GetCarById(id);
-  var sql = @"DELETE FROM cars WHERE id = @id";
- 
-  return _db.ExecuteScalar<Car>(sql);
-}
+  public Car RemoveCar(int id)
+  {
+    var car = GetCarById(id);
+    // id = car.Id;
+    var sql = @"DELETE FROM cars WHERE id = @id";
+
+    _db.Execute(sql, new { id });
+    return car;
+  }
+
+  public Car UpdateCar(Car carData)
+  {
+    string sql = @"
+        UPDATE cars SET
+                make = @make,
+                model = @model,
+                year = @year,
+                price = @price,
+                imgUrl = @imgUrl,
+                description = @description      
+            WHERE id = @id;
+        ";
+    int carRow = _db.Execute(sql, carData);
+    if (carRow == 0)
+    {
+      throw new Exception("unable to edit this car");
+    }
+    return carData;
+  }
 
 }
+// UPDATE cats SET
+//   name = "Felix the Cat"
+// WHERE id = 3;
+
