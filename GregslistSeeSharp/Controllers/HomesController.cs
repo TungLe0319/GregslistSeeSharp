@@ -73,36 +73,37 @@ public class HomesController : ControllerBase
 
 
 
-  // [HttpPost]
-  // public ActionResult<List<Car>> Create([FromBody] Car carData)
-  // {
-  //   try
-  //   {
-  //     Car car = _carsService.CreateCar(carData);
-  //     return Ok(car);
-  //   }
-  //   catch (Exception e)
-  //   {
-  //     return BadRequest(e.Message);
-  //   }
-  // }
+  [HttpPost]
+  public ActionResult<List<Home>> Create([FromBody] Home homeData)
+  {
+    try
+    {
+      Home home  = _homesService.CreateHome(homeData);
+      return Ok(home);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
 
 
 
-  // [HttpPut("{id}")]
-  // public ActionResult<List<Car>> UpdateCar([FromBody] Car carData,int id)
-  // {
-  //   try
-  //   {
-  //     carData.Id = id;
-
-  //     return Ok(_carsService.UpdateCar(carData));
-  //   }
-  //   catch (Exception e)
-  //   {
-  //     return BadRequest(e.Message);
-  //   }
-  // }
+  [HttpPut("{id}")]
+  public ActionResult<List<Home>> Update([FromBody] Home homeData,int id)
+  {
+    try
+    {
+      homeData.Id = id;
+      Home home = _homesService.UpdateHome(homeData);
+     
+      return Ok();
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
 
 
 }

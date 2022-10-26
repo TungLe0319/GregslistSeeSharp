@@ -16,7 +16,7 @@ public class HomesService
 
   public Home GetHomeById(int id)
   {
-    var house = _homesRepository.GetHomeById(id);
+    Home house = _homesRepository.GetHomeById(id);
 
     if (house == null)
     {
@@ -25,8 +25,30 @@ public class HomesService
    return house;
   }
 
-  internal Home RemoveHome(int id)
+  public Home RemoveHome(int id)
   {
-    throw new NotImplementedException();
+    Home home = this.GetHomeById(id);
+    
+    return _homesRepository.RemoveHome(id);
+  }
+
+  public Home CreateHome(Home homeData)
+  {
+
+    return _homesRepository.CreateHome(homeData);
+  }
+
+  internal Home UpdateHome(Home homeData)
+  {
+    Home original = this.GetHomeById(homeData.Id);
+    original.Bathrooms = homeData.Bathrooms?? original.Bathrooms;
+   original.Bedrooms = homeData.Bedrooms?? original.Bedrooms;
+   original.Levels = homeData.Levels?? original.Levels;
+   original.Price = homeData.Price?? original.Price;
+   original.Description = homeData.Description?? original.Description;
+   original.ImgUrl = homeData.ImgUrl?? original.ImgUrl;
+  
+   
+    return _homesRepository.UpdateHome(original);
   }
 }
