@@ -1,9 +1,7 @@
 <template>
 <div>
   <div class="col-12">
-  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#formOffCanvas" aria-controls="offcanvasExample">
-  Button with data-bs-target
-</button>
+ 
   </div>
   <div class="col-md-6">
     <OffCanvasForm/>
