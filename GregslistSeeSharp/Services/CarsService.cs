@@ -54,8 +54,15 @@ return _carsRepo.GetCarsBySellerId(sellerId);
   }
 
 
-  public Car UpdateCar(Car carData)
+  public Car UpdateCar(Car carData,Account userInfo)
   {
+
+if (carData.SellerId != userInfo.Id)
+{
+  throw new Exception("You Are Not The Owner Of This Listing");
+} 
+
+    
     Car original = GetCarById(carData.Id);
     original.Make = carData.Make ?? original.Make;
     original.Model = carData.Model ?? original.Model;

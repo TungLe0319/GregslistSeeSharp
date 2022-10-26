@@ -8,7 +8,6 @@ public class CarsController : ControllerBase
   private readonly CarsService _carsService;
   private readonly Auth0Provider _auth0Provider;
 
-  // Dependency Injection... DONT FORGET TO ADD INTO startup.cs
   public CarsController(CarsService carsService, Auth0Provider auth0Provider)
   {
     _carsService = carsService;
@@ -107,12 +106,14 @@ public class CarsController : ControllerBase
   {
     try
     {
-    await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+var userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+//Make sure to now add <Task<ActionResult<Example/Character>>>  
+
    
       
-      carData.Id = id;
+      // carData.Id = id;
 
-      return Ok(_carsService.UpdateCar(carData));
+      return Ok(_carsService.UpdateCar(carData,userInfo));
     }
     catch (Exception e)
     {
