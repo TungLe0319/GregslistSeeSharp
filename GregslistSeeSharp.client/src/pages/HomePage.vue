@@ -1,18 +1,34 @@
 <template>
 <div>
-  <CarCard/>
+
 </div>
 </template>
 
 <script>
+import { onMounted } from "vue";
+import { carsService } from "../services/CarsService.js";
+import Pop from "../utils/Pop.js";
+
 
 
 export default {
 
     setup() {
+
+  async function getCars(){
+    try {
+        await carsService.getCars()
+      } catch (error) {
+        Pop.error(error,'[]')
+      }
+  }
+
+  onMounted(()=>{
+    getCars()
+  })
         return {};
     },
-    components: { CarCard }
+    components: { }
 }
 </script>
 
