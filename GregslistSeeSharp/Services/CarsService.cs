@@ -35,6 +35,12 @@ public class CarsService
     return car;
   }
 
+public List<Car> GetCarsBySellerId(string sellerId){
+return _carsRepo.GetCarsBySellerId(sellerId);
+}
+
+
+
   public Car RemoveCar(int id)
   {
     var car = _carsRepo.GetCarById(id);

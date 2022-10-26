@@ -1,13 +1,12 @@
 namespace GregslistSeeSharp.Repositories;
 
-public class CarsRepository
+public class CarsRepository : BaseRepository
 {
-  private readonly IDbConnection _db;
-
-  public CarsRepository(IDbConnection db)
+  public CarsRepository(IDbConnection db) : base(db)
   {
-    _db = db;
   }
+
+
 
   public List<Car> GetCars()
   {
@@ -19,8 +18,8 @@ public class CarsRepository
   public Car CreateCar(Car carData)
   {
     var sql = @"
-    INSERT INTO cars(make,model,year,price,description,imgUrl)
-    VALUES(@Make,@Model,@Year,@Price,@Description,@ImgUrl);
+    INSERT INTO cars(make,model,year,price,description,imgUrl,sellerId)
+    VALUES(@Make,@Model,@Year,@Price,@Description,@ImgUrl,@SellerId);
     SELECT LAST_INSERT_ID();";
     // RUN COMMAND AND THEN DO A SELECT...
     carData.Id = _db.ExecuteScalar<int>(sql, carData);
@@ -34,6 +33,17 @@ public class CarsRepository
     return _db.QueryFirstOrDefault<Car>(sql, new { id });
 
   }
+
+
+  public List<Car> GetCarsBySellerId(string sellerId)
+  {
+    var sql = @"SELECT * FROM cars WHERE sellerId = @sellerId";
+    return _db.Query<Car>(sql, new { sellerId }).ToList();
+
+  }
+
+
+
 
   public Car RemoveCar(int id)
   {
