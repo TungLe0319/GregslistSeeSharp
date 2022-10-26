@@ -11,22 +11,22 @@ public class HomesRepository{
 
   public List<Home> GetHomes()
   {
-    var sql = "SELECT * FROM houses";
+    var sql = "SELECT * FROM homes";
 
     return  _db.Query<Home>(sql).ToList();
   }
 
   public Home GetHomeById(int id)
   {
-   var sql = "SELECT * FROM houses WHERE id = @id";
+   var sql = "SELECT * FROM homes WHERE id = @id";
    return _db.QueryFirstOrDefault<Home>(sql, new {id});
   }
 
   public Home RemoveHome(int id)
   {
-    Home home = this.GetHomeById(id);
-    var sql = "DELETE FROM houses WHERE id = @id";
-    int houseRow = _db.Execute(sql);
+    var home = GetHomeById(id);
+    var sql = @"DELETE FROM homes WHERE id = @id";
+   int houseRow = _db.Execute(sql, new {id});
 
     if (houseRow == 0 )
     {
@@ -37,9 +37,10 @@ public class HomesRepository{
 
   public Home CreateHome(Home homeData)
   {
-    var sql = @"INSERT INTO homes(bathrooms,bedrooms,levels,year,price,description,imgUrl)
+    var sql = @"
+    INSERT INTO homes(bathrooms,bedrooms,levels,year,price,description,imgUrl)
     VALUES(@Bathrooms,@Bedrooms,@Levels,@Year,@price,@Description,@ImgUrl);
-    SELECT_LAST_INSERT_ID()";
+    SELECT LAST_INSERT_ID();";
 
     homeData.Id = _db.ExecuteScalar<int>(sql, homeData);
    return  homeData;
@@ -47,7 +48,7 @@ public class HomesRepository{
 
   public Home UpdateHome(Home homeData)
   {
-      string sql = @"UPDATE cars SET
+      string sql = @"UPDATE homes SET
                 bathrooms = @bathrooms,
                 bedrooms = @bedrooms,
                 levels = @levels,

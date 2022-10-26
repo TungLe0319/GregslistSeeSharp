@@ -19,11 +19,10 @@ public class CarsController : ControllerBase
   {
     try
     {
-
-
-
       List<Car> cars = _carsService.GetCars();
       return Ok(cars);
+     
+     
     }
     catch (Exception e)
     {

@@ -21,8 +21,7 @@ public class CarsRepository
     var sql = @"
     INSERT INTO cars(make,model,year,price,description,imgUrl)
     VALUES(@Make,@Model,@Year,@Price,@Description,@ImgUrl);
-    SELECT_LAST_INSERT_ID(); 
-";
+    SELECT LAST_INSERT_ID();";
     // RUN COMMAND AND THEN DO A SELECT...
     carData.Id = _db.ExecuteScalar<int>(sql, carData);
     return carData;

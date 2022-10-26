@@ -22,9 +22,6 @@ public class HomesController : ControllerBase
   {
     try
     {
-
-
-
       List<Home> homes = _homesService.GetHomes();
       return Ok(homes);
     }
