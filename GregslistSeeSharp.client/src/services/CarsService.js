@@ -8,7 +8,7 @@ class CarsService{
   async getCars(){
     const res = await api.get('/api/cars')
     console.log(res.data);
-    // AppState.cars = res.data.map(c=>new Car(c))
+    AppState.cars = res.data.map(c=>new Car(c))
   }
 }
 

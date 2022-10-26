@@ -1,8 +1,8 @@
 -- Active: 1666715468048@@SG-curved-roast-6734-6831-mysql-master.servers.mongodirector.com@3306@MyFirstDatabase
 
-CREATE TABLE IF NOT EXISTS cars(
+CREATE TABLE IF NOT EXISTS  cars(
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-make VARCHAR(255)  NOT NULL,
+make VARCHAR(255)   NOT NULL,
 model VARCHAR(255)  NOT NULL,
 year INT CHECK(year >=1886) NOT NULL,
 price DECIMAL (10,2) NOT NULL CHECK(price >= 0),

@@ -13,7 +13,7 @@ public class HomesController : ControllerBase
 
 
 
-  
+
 
 
 
@@ -53,33 +53,13 @@ public class HomesController : ControllerBase
 
 
 
-    [HttpDelete("{id}")]
-    public ActionResult<Home> RemoveHome(int id)
-    {
-      try
-      {
-        Home home = _homesService.RemoveHome(id);
-        return Ok(home);
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
-    }
-
-
-
-
-
-
-
-  [HttpPost]
-  public ActionResult<List<Car>> Create([FromBody] Car carData)
+  [HttpDelete("{id}")]
+  public ActionResult<Home> RemoveHome(int id)
   {
     try
     {
-      Car car = _carsService.CreateCar(carData);
-      return Ok(car);
+      Home home = _homesService.RemoveHome(id);
+      return Ok(home);
     }
     catch (Exception e)
     {
@@ -89,20 +69,40 @@ public class HomesController : ControllerBase
 
 
 
-  [HttpPut("{id}")]
-  public ActionResult<List<Car>> UpdateCar([FromBody] Car carData,int id)
-  {
-    try
-    {
-      carData.Id = id;
-     
-      return Ok(_carsService.UpdateCar(carData));
-    }
-    catch (Exception e)
-    {
-      return BadRequest(e.Message);
-    }
-  }
+
+
+
+
+  // [HttpPost]
+  // public ActionResult<List<Car>> Create([FromBody] Car carData)
+  // {
+  //   try
+  //   {
+  //     Car car = _carsService.CreateCar(carData);
+  //     return Ok(car);
+  //   }
+  //   catch (Exception e)
+  //   {
+  //     return BadRequest(e.Message);
+  //   }
+  // }
+
+
+
+  // [HttpPut("{id}")]
+  // public ActionResult<List<Car>> UpdateCar([FromBody] Car carData,int id)
+  // {
+  //   try
+  //   {
+  //     carData.Id = id;
+
+  //     return Ok(_carsService.UpdateCar(carData));
+  //   }
+  //   catch (Exception e)
+  //   {
+  //     return BadRequest(e.Message);
+  //   }
+  // }
 
 
 }

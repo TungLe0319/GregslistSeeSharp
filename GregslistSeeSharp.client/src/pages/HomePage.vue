@@ -1,11 +1,14 @@
 <template>
 <div>
-
+<CarCard :car="c"  v-for="c in cars"/>
 </div>
 </template>
 
 <script>
+import { computed } from "@vue/reactivity";
 import { onMounted } from "vue";
+import { AppState } from "../AppState.js";
+
 import { carsService } from "../services/CarsService.js";
 import Pop from "../utils/Pop.js";
 
@@ -26,7 +29,10 @@ export default {
   onMounted(()=>{
     getCars()
   })
-        return {};
+        return {
+cars: computed(() => AppState.cars),
+
+        };
     },
     components: { }
 }

@@ -8,10 +8,10 @@
       />
     </div>
     <div class="card-body">
-      <div>
+      <!-- <div>
         <img :src="seller.picture" :alt="seller?.name" :title="seller?.name" height="40" class="rounded-circle">
         <i class="mdi mdi-minus-box fs-1" ></i>
-      </div>
+      </div> -->
       <div class="d-flex justify-content-between">
         <h6>make: {{ car.make }}</h6>
         <h6>model: {{ car.model }}</h6>
@@ -29,7 +29,7 @@ import Pop from '../utils/Pop.js';
 export default {
   props: {
     car: { type: Car, required: true },
-    seller: { type: SellerProfile, required: true },
+    // seller: { type: SellerProfile, required: true },
   },
 
   setup(props) {
