@@ -24,7 +24,7 @@ public class CarsController : ControllerBase
       var userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
 // var cars = _carsService.GetCarBySellerId
 
-      List<Car> cars = _carsService.GetCars();
+      var cars = _carsService.GetCarsBySellerId(userInfo?.Id);
       return Ok(cars);
 
 

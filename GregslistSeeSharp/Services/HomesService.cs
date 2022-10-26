@@ -8,11 +8,11 @@ public class HomesService
     _homesRepository = homesRepository;
   }
 
-  public List<Home> GetHomes()
-  {
+  // public List<Home> GetHomes()
+  // {
 
-    return _homesRepository.GetHomes();
-  }
+  //   return _homesRepository.GetHomes();
+  // }
 
   public Home GetHomeById(int id)
   {

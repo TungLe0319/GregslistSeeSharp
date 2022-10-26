@@ -9,7 +9,7 @@ model VARCHAR(255)  NOT NULL,
 year INT CHECK(year >=1886) NOT NULL,
 price DECIMAL (10,2) NOT NULL CHECK(price >= 0),
 description VARCHAR(255),
-imgUrl VARCHAR(255) ,
+imgUrl VARCHAR(500),
 sellerId VARCHAR(255) NOT NULL,
 FOREIGN KEY(sellerId) REFERENCES accounts(id) ON DELETE CASCADE
 )default charset utf8 COMMENT '';

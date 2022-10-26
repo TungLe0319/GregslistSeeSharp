@@ -1,6 +1,12 @@
 <template>
 <div>
+  <div class="col-12">
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#formOffCanvas" aria-controls="offcanvasExample">
+  Button with data-bs-target
+</button>
+  </div>
   <div class="col-md-6">
+    <OffCanvasForm/>
     
   </div>
 <CarCard :car="c"  v-for="c in cars"/>
@@ -11,6 +17,7 @@
 import { computed } from "@vue/reactivity";
 import { onMounted } from "vue";
 import { AppState } from "../AppState.js";
+
 
 import { carsService } from "../services/CarsService.js";
 import { homesService } from "../services/HomesService.js";
@@ -47,7 +54,7 @@ cars: computed(() => AppState.cars),
 
         };
     },
-    components: { }
+  
 }
 </script>
 

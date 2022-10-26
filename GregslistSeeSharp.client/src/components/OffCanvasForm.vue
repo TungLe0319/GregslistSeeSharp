@@ -8,7 +8,7 @@
   <div class="offcanvas-body mt-3">
     <!-- NOTE Car-Form Here -->
     <div class="car-form text-dark">
-     <form onsubmit="handleSubmit()">
+     <form @submit.prevent="handleSubmit">
 
   <div class="form-floating mb-3">
     <input type="text" class="form-control" name="make" required minlength="3" maxlength="20" v-model="editable.make" >
@@ -52,7 +52,7 @@
     </div>
     <!-- ! Car-Form -->
     <!-- NOTE House-Form -->
-    <div class="house-form text-dark" v-if="placeholder==true">
+    <!-- <div class="house-form text-dark" v-if="placeholder==true">
       <form onsubmit="app.housesController.handleSubmit()">
        
       <div class="form-floating mb-3">
@@ -100,12 +100,12 @@
      
      </form>
 
-    </div>
+    </div> -->
 
     <!-- ! House-Form -->
     <!-- NOTE Job-Form -->
 
-    <div class="job-form text-dark" v-if="placeholder==true">
+    <!-- <div class="job-form text-dark" v-if="placeholder==true">
        <form onsubmit="app.jobsController.handleSubmit()">
 
  
@@ -156,7 +156,7 @@
 
 
 </form>
-    </div>
+    </div> -->
     <!-- ! Job-Form -->
   </div>
 </div>
@@ -166,14 +166,36 @@
 
 
 <script>
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
+import { AppState } from "../AppState.js";
+import { carsService } from "../services/CarsService.js";
+import Pop from "../utils/Pop.js";
 
 export default {
   setup(){
+    watchEffect(()=> {
+      if (AppState.activeListing) {
+        editable.value = {...AppState.activeListing}
+      }
+    })
     const editable =ref({})
     return {
       editable,
-placeholder:false
+      async handleSubmit(){
+        try {
+          if (AppState.activeListing) {
+            await carsService.editCar(editable.value)
+            AppState.activeListing = {}
+            return
+          }else{
+            
+          }
+            await carsService.createCar(editable.value)
+            AppState.activeListing = {}
+          } catch (error) {
+            Pop.error(error,'[]')
+          }
+      }
     }
   }
 }

@@ -20,19 +20,19 @@ public class HomesController : ControllerBase
 
 
 
-  [HttpGet]
-  public  ActionResult<List<Home>> Get()
-  {
-    try
-    {
-      List<Home> homes = _homesService.GetHomes();
-      return Ok(homes);
-    }
-    catch (Exception e)
-    {
-      return BadRequest(e.Message);
-    }
-  }
+  // [HttpGet]
+  // public  ActionResult<List<Home>> Get()
+  // {
+  //   try
+  //   {
+  //     List<Home> homes = _homesService.GetHomes();
+  //     return Ok(homes);
+  //   }
+  //   catch (Exception e)
+  //   {
+  //     return BadRequest(e.Message);
+  //   }
+  // }
 
   [HttpGet]
   public async Task<ActionResult<List<Home>>> GetBySellerId()

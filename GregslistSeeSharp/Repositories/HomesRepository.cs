@@ -9,12 +9,12 @@ public class HomesRepository{
     _db = db;
   }
 
-  public List<Home> GetHomes()
-  {
-    var sql = "SELECT * FROM homes";
+  // public List<Home> GetHomes()
+  // {
+  //   var sql = "SELECT * FROM homes";
 
-    return  _db.Query<Home>(sql).ToList();
-  }
+  //   return  _db.Query<Home>(sql).ToList();
+  // }
 
 
 
