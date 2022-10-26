@@ -38,7 +38,7 @@ public class HomesService
     return _homesRepository.CreateHome(homeData);
   }
 
-  internal Home UpdateHome(Home homeData)
+  public Home UpdateHome(Home homeData)
   {
     Home original = this.GetHomeById(homeData.Id);
     original.Bathrooms = homeData.Bathrooms?? original.Bathrooms;
@@ -50,5 +50,11 @@ public class HomesService
   
    
     return _homesRepository.UpdateHome(original);
+  }
+
+  public List<Home> GetHomesBySellerId(string sellerId)
+  {
+
+return _homesRepository.GetHomesBySellerId(sellerId);
   }
 }

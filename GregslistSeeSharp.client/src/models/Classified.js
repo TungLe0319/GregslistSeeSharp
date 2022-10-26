@@ -1,5 +1,5 @@
 import { Car } from './Car.js';
-import { House } from './House.js';
+import { House } from './Home.js';
 import { Job } from './Job.js';
 import { SellerProfile } from "./SellerProfile.js";
 

@@ -16,6 +16,16 @@ public class HomesRepository{
     return  _db.Query<Home>(sql).ToList();
   }
 
+
+
+  public List<Home> GetHomesBySellerId(string sellerId)
+  {
+    var sql = "SELECT * FROM homes WHERE sellerId = @sellerId";
+    return _db.Query<Home>(sql, new { sellerId }).ToList();
+  }
+
+
+
   public Home GetHomeById(int id)
   {
    var sql = "SELECT * FROM homes WHERE id = @id";
@@ -64,4 +74,5 @@ public class HomesRepository{
             }
     return homeData;
   }
+
 }

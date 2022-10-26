@@ -1,13 +1,16 @@
 namespace GregslistSeeSharp.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/[controller]")]
 public class HomesController : ControllerBase
 {
+  private readonly Auth0Provider _auth0Provider;
   private readonly HomesService _homesService;
 
-  public HomesController(HomesService homesService)
+  public HomesController(HomesService homesService,Auth0Provider auth0Provider)
   {
+    _auth0Provider = auth0Provider;
     _homesService = homesService;
   }
 
@@ -18,12 +21,28 @@ public class HomesController : ControllerBase
 
 
   [HttpGet]
-  public ActionResult<List<Home>> Get()
+  public  ActionResult<List<Home>> Get()
   {
     try
     {
       List<Home> homes = _homesService.GetHomes();
       return Ok(homes);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
+
+  [HttpGet]
+  public async Task<ActionResult<List<Home>>> GetBySellerId()
+  {
+    try
+    {
+   var userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+   //Make sure to now add <Task<ActionResult<Example/Character>>>  
+   var homes = _homesService.GetHomesBySellerId(userInfo?.Id);
+   return Ok(homes);
     }
     catch (Exception e)
     {

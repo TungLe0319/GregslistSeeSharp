@@ -9,10 +9,10 @@ model VARCHAR(255)  NOT NULL,
 year INT CHECK(year >=1886) NOT NULL,
 price DECIMAL (10,2) NOT NULL CHECK(price >= 0),
 description VARCHAR(255),
-imgUrl VARCHAR(255) DEFAULT "https://upload.wikimedia.org/wikipedia/commons/2/22/Hot_dog_car_in_New_York_city_1020027.jpg",
-sellerId VARCHAR(255) NO NULL,
+imgUrl VARCHAR(255) ,
+sellerId VARCHAR(255) NOT NULL,
 FOREIGN KEY(sellerId) REFERENCES accounts(id) ON DELETE CASCADE
-);
+)default charset utf8 COMMENT '';
 
 -- INSERT INTO cars (make,model,year,price,description,imgUrl) 
 -- VALUES ("HOTDOG", "BUCKET", 1996, 9999, "Yuck Yuck", "https://upload.wikimedia.org/wikipedia/commons/2/22/Hot_dog_car_in_New_York_city_1020027.jpg");

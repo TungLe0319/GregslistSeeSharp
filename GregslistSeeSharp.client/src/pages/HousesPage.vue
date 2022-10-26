@@ -10,7 +10,7 @@
 <script>
 import { computed } from "@vue/reactivity"
 import { AppState } from "../AppState.js"
-import { housesService } from "../services/HousesService.js"
+import { housesService } from "../services/HomesService.js"
 
 export default {
   

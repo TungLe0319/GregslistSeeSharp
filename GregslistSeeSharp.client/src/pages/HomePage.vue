@@ -1,5 +1,8 @@
 <template>
 <div>
+  <div class="col-md-6">
+<OffCanvasForm/>
+  </div>
 <CarCard :car="c"  v-for="c in cars"/>
 </div>
 </template>
@@ -8,6 +11,8 @@
 import { computed } from "@vue/reactivity";
 import { onMounted } from "vue";
 import { AppState } from "../AppState.js";
+
+
 
 import { carsService } from "../services/CarsService.js";
 import Pop from "../utils/Pop.js";
@@ -27,14 +32,14 @@ export default {
   }
 
   onMounted(()=>{
-    getCars()
+   
   })
         return {
 cars: computed(() => AppState.cars),
 
         };
     },
-    components: { }
+    components: {}
 }
 </script>
 
