@@ -67,11 +67,11 @@ public class CarsRepository : BaseRepository
                 description = @description      
             WHERE id = @id;
         ";
-    int carRow = _db.Execute(sql, carData);
-    if (carRow == 0)
-    {
-      throw new Exception("unable to edit this car");
-    }
+  _db.Execute(sql, carData);
+    // if (carRow == 0)
+    // {
+    //   throw new Exception("unable to edit this car");
+    // }
     return carData;
   }
 
