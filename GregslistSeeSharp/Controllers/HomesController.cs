@@ -13,13 +13,6 @@ public class HomesController : ControllerBase
     _auth0Provider = auth0Provider;
     _homesService = homesService;
   }
-
-
-
-
-
-
-
   // [HttpGet]
   // public  ActionResult<List<Home>> Get()
   // {
@@ -33,7 +26,6 @@ public class HomesController : ControllerBase
   //     return BadRequest(e.Message);
   //   }
   // }
-
   [HttpGet]
   public async Task<ActionResult<List<Home>>> GetBySellerId()
   {
@@ -70,11 +62,13 @@ public class HomesController : ControllerBase
 
 
   [HttpDelete("{id}")]
-  public ActionResult<Home> RemoveHome(int id)
+  public async Task<ActionResult<Home>> RemoveHome(int id)
   {
     try
     {
-      Home home = _homesService.RemoveHome(id);
+      var userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      
+      Home home = _homesService.RemoveHome(id,userInfo);
       return Ok(home);
     }
     catch (Exception e)

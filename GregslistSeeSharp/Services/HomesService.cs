@@ -25,10 +25,14 @@ public class HomesService
    return house;
   }
 
-  public Home RemoveHome(int id)
+  public Home RemoveHome(int id,Account userInfo)
   {
+   
     Home home = this.GetHomeById(id);
-    
+    if (home.SellerId != userInfo.Id)
+    {
+      throw new Exception("not your listing");
+    }
     return _homesRepository.RemoveHome(id);
   }
 
@@ -41,7 +45,7 @@ public class HomesService
   public Home UpdateHome(Home homeData)
   {
     Home original = this.GetHomeById(homeData.Id);
-    original.Bathrooms = homeData.Bathrooms?? original.Bathrooms;
+   original.Bathrooms = homeData.Bathrooms?? original.Bathrooms;
    original.Bedrooms = homeData.Bedrooms?? original.Bedrooms;
    original.Levels = homeData.Levels?? original.Levels;
    original.Price = homeData.Price?? original.Price;
