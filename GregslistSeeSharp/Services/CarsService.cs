@@ -32,6 +32,9 @@ public class CarsService
       throw new Exception("Invalid Id [GetCarById]");
     }
 
+
+
+
     return car;
   }
 
