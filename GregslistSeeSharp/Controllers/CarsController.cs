@@ -42,7 +42,9 @@ public class CarsController : ControllerBase
   public async  Task<ActionResult<Car>> GetCarById(int id)
   {
     try
+
     {
+      
       var userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
       Car car = _carsService.GetCarById(id);
       return Ok(car);

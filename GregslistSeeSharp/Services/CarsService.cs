@@ -69,11 +69,13 @@ if (carData.SellerId != userInfo.Id)
     Car original = GetCarById(carData.Id);
     original.Make = carData.Make ?? original.Make;
     original.Model = carData.Model ?? original.Model;
-    original.Year = carData.Year ;
-    original.Price = carData.Price ;
+    original.Year = carData.Year?? original.Year;
+    original.Price = carData.Price?? original.Price;
     original.ImgUrl = carData.ImgUrl ?? original.ImgUrl;
     original.Description = carData.Description ?? original.Description;
     return _carsRepo.UpdateCar(original);
   }
+
+  
 
 }
