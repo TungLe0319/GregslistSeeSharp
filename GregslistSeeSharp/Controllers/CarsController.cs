@@ -66,7 +66,7 @@ public class CarsController : ControllerBase
       var userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
  
       
-      Car car = _carsService.RemoveCar(id);
+      Car car = _carsService.RemoveCar(id,userInfo);
       return Ok(car);
     }
     catch (Exception e)

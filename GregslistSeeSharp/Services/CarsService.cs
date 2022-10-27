@@ -44,7 +44,7 @@ return _carsRepo.GetCarsBySellerId(sellerId);
 
 
 
-  public Car RemoveCar(int id)
+  public Car RemoveCar(int id,Account userInfo)
   {
     var car = _carsRepo.GetCarById(id);
 
@@ -52,6 +52,13 @@ return _carsRepo.GetCarsBySellerId(sellerId);
     {
       throw new Exception("Invalid Id [GetCarById]");
     }
+
+    if( car.SellerId != userInfo.Id)
+    {
+    throw new Exception("Not Yours");
+    }
+    
+
 
     return _carsRepo.RemoveCar(id);
   }
