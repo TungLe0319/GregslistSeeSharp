@@ -67,7 +67,7 @@ public class CarsRepository : BaseRepository
                 description = @description      
             WHERE id = @id;
         ";
-  _db.Execute(sql, carData);
+    _db.Execute(sql, carData);
     // if (carRow == 0)
     // {
     //   throw new Exception("unable to edit this car");
